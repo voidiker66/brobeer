@@ -1,0 +1,35 @@
+{% extends "layout.html" %} 
+
+{% block content %}
+
+<body>
+  <div class="container">
+    <h3 id="Name">{{ result["park_name"] }}</h3>
+    <p id="summary">{{ result["park_description"] }}</p>
+    <p id="weather">{{ result["park_weather"] }}</p>
+    <p id="address">Address:
+        {% if result["park_address"] is not none %} 
+          {{ result["park_address"] }}, 
+        {% endif %} 
+        {% if result ["park_city"] is not none%} 
+          {{ result ["park_city"] }}, 
+        {% endif %} 
+        {{ result ["park_state"] }}
+      </p>
+    <p id="rating">Rating: 
+      {% if result["park_rating"] is none %}
+        Unrated 
+      {% else %} 
+        {{ result["park_rating"] }} / 5.0 with {{ result["park_reviews"]}} reviews 
+      {% endif %}
+    </p>
+    <p id="contact">
+      {% if result["park_phone"] %} 
+        Contact us at: {{ result["park_phone"] }}
+      {% endif %}
+    </p>
+    <img id="page-image" src={{ result[ "park_image_url"] }} alt={{ result["park_name"] }}>
+  </div>
+
+</body>
+{% endblock %}

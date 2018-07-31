@@ -1,0 +1,1772 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Collapsible Tree Example</title>
+
+    <style>
+
+  .node circle {
+    fill: #fff;
+    stroke: steelblue;
+    stroke-width: 3px;
+  }
+
+  .node text { font: 12px sans-serif; }
+
+  .link {
+    fill: none;
+    stroke: #ccc;
+    stroke-width: 2px;
+  }
+  
+    </style>
+
+  </head>
+
+  <body>
+
+<!-- load the d3.js library --> 
+<script src="http://d3js.org/d3.v3.min.js"></script>
+  
+<script>
+
+var treeData = [
+  {
+    "name": "Animals By Name",
+    "parent": "null",
+    "children": [
+      {
+        "name": "A",
+        "children": [
+    {
+      "name": "Abert's squirrel"
+    }, {
+      "name": "Agile kangaroo rat"
+    }, {
+      "name": "Alaska marmot"
+    }, {
+      "name": "Alaska tiny shrew"
+    }, {
+      "name": "Alaskan hare"
+    }, {
+      "name": "Allen's big-eared bat"
+    }, {
+      "name": "Allen's chipmunk"
+    }, {
+      "name": "Alabama beach mouse",
+    }, {
+      "name": "Alpine chipmunk"
+    }, {
+      "name": "American badger"
+    }, {
+      "name": "American bison"
+    },  {
+      "name": "American short-tailed shrew",
+    }, {
+      "name": "American black bear"
+    },
+    {
+      "name": "Atlantic spotted dolphin",
+    }, {
+      "name": "American short-tailed shrew",
+    }, {
+      "name": "American hog-nosed skunk"
+    }, {
+      "name": "American lion"
+    }, {
+      "name": "American marten"
+    }, {
+      "name": "American mink"
+    }, {
+      "name": "Allegheny woodrat",
+    }, {
+      "name": "American pika"
+    }, {
+      "name": "American pygmy shrew"
+    }, {
+      "name": "American red squirrel"
+    }, {
+      "name": "American shrew mole",
+    }, {
+      "name": "American water shrew"
+    }, {
+      "name": "Animal migration"
+    }, {
+      "name": "American mountain deer",
+    }, {
+      "name": "American cheetah",
+    }, {
+      "name": "Antelope jackrabbit"
+    }, {
+      "name": "Antilocapridae"
+    }, {
+      "name": "Antrozoini"
+    }, {
+      "name": "Aplodontiidae"
+    }, {
+      "name": "Appalachian cottontail"
+    }, {
+      "name": "Arctic fox"
+    }, {
+      "name": "Arctic ground squirrel"
+    }, {
+      "name": "Arctic hare"
+    }, {
+      "name": "Arctic shrew"
+    }, {
+      "name": "Short-faced bear"
+    }, {
+      "name": "Arizona cotton rat"
+    }, {
+      "name": "Arizona gray squirrel"
+    }, {
+      "name": "Arizona myotis"
+    }, {
+      "name": "Arizona pocket mouse"
+    }, {
+      "name": "Arizona shrew"
+    }, {
+      "name": "Atlantic white-sided dolphin",
+    }, {
+      "name": "Arizona woodrat"
+    }, {
+      "name": "Aurochs"
+    }, {
+      "name": "Aztlanolagus"
+    }
+        ]
+      },
+      {
+        "name": "B",
+        "children": [
+    {
+      "name": "Bailey's pocket mouse"
+    }, {
+      "name": "Baird's pocket gopher"
+    }, {
+      "name": "Baird's shrew"
+    }, {
+      "name": "Beluga whale",
+    }, {
+      "name": "Baja pocket mouse"
+    }, {
+      "name": "Bowhead whale"
+    }, {
+      "name": "Balaenidae"
+    }, {
+      "name": "Bryde's whale"
+    }, {
+      "name": "Blue whale"
+    }, {
+      "name": "Barbary sheep"
+    }, {
+      "name": "Barren-ground caribou"
+    }, {
+      "name": "Barren ground shrew"
+    }, {
+      "name": "Beach vole"
+    }, {
+      "name": "Bearded seal"
+    }, {
+      "name": "Beech marten"
+    }, {
+      "name": "Belding's ground squirrel"
+    }, {
+      "name": "Beaked whale"
+    }, {
+      "name": "Bezoar ibex"
+    }, {
+      "name": "Big-eared woodrat"
+    }, {
+      "name": "Big brown bat"
+    }, {
+      "name": "Bighorn sheep"
+    }, {
+      "name": "Bison antiquus"
+    }, {
+      "name": "Bison occidentalis"
+    }, {
+      "name": "Black-eared mouse"
+    }, {
+      "name": "Black-footed ferret"
+    }, {
+      "name": "Black-tailed jackrabbit"
+    }, {
+      "name": "Black-tailed prairie dog"
+    }, {
+      "name": "Black rat"
+    }, {
+      "name": "Blackbuck"
+    }, {
+      "name": "Bobcat"
+    }, {
+      "name": "Botta's pocket gopher"
+    }, {
+      "name": "Bootherium bombifrons",
+    }, {
+      "name": "Bovidae"
+    }, {
+      "name": "Brachyprotoma obtusata"
+    }, {
+      "name": "Broad-footed mole"
+    }, {
+      "name": "Brown bear"
+    }, {
+      "name": "Brown rat",
+    }, {
+      "name": "Brush mouse"
+    }, {
+      "name": "Brush rabbit"
+    }, {
+      "name": "Bryant's woodrat"
+    }, {
+      "name": "Bushy-tailed woodrat"
+    }, {
+      "name": "Blainville's beaked whale",
+    }
+        ]
+       },
+      {
+        "name": "C",
+        "children": [
+{
+      "name": "Cactus mouse",
+    }, {
+      "name": "California chipmunk",
+    }, {
+      "name": "California ground squirrel",
+    }, {
+      "name": "California kangaroo rat",
+    }, {
+      "name": "California mouse",
+    }, {
+      "name": "California myotis",
+    }, {
+      "name": "California pocket mouse",
+    }, {
+      "name": "California red tree mouse",
+    }, {
+      "name": "California sea lion",
+    }, {
+      "name": "California vole",
+    }, {
+      "name": "Camas pocket gopher",
+    }, {
+      "name": "Camelops",
+    }, {
+      "name": "Canada lynx",
+    }, {
+      "name": "Canidae",
+    }, {
+      "name": "Canyon mouse",
+    }, {
+      "name": "Cape hare",
+    },  {
+      "name": "Cervalces scotti",
+    }, {
+      "name": "Capromeryx minor",
+    }, {
+      "name": "Central Texas pocket gopher",
+    }, {
+      "name": "Caribbean monk seal",
+    },
+    {
+      "name": "Clymene dolphin",
+    }, {
+      "name": "Castoridae",
+    }, {
+      "name": "Castoroides",
+    }, {
+      "name": "Cattle",
+    }, {
+      "name": "Cave myotis",
+    }, {
+      "name": "Caviidae",
+    }, {
+      "name": "Cetacea",
+    }, {
+      "name": "Chihuahuan pocket mouse",
+    }, {
+      "name": "Columbian white-tailed deer",
+    }, {
+      "name": "Chital",
+    }, {
+      "name": "Cinereus shrew",
+    }, {
+      "name": "Coypu",
+    }, {
+      "name": "Cingulata",
+    },  {
+      "name": "Cotton rat",
+    }, {
+      "name": "Cliff chipmunk",
+    }, {
+      "name": "Coast mole",
+    }, {
+      "name": "Collared peccary",
+    }, {
+      "name": "Collared pika",
+    }, {
+      "name": "Colorado chipmunk",
+    }, {
+      "name": "Columbian ground squirrel",
+    }, {
+      "name": "Columbian mammoth",
+    }, {
+      "name": "Common opossum",
+    }, {
+      "name": "Cougar",
+    }, {
+      "name": "Cotton mouse",
+    }, {
+      "name": "Coyote",
+    },    {
+      "name": "Cinereus shrew",
+    }, {
+      "name": "Coypu",
+    }, {
+      "name": "Crawford's gray shrew",
+    }, {
+      "name": "Creeping vole",
+    }, {
+      "name": "Crotalus molossus",
+    }, {
+      "name": "Cetacean stranding",
+    }, {
+      "name": "Common minke whale",
+    }, {
+      "name": "Columbian mammoth",
+    },
+    {
+      "name": "Common bottlenose dolphin",
+    }
+        ]
+      },
+      {
+        "name": "D",
+        "children": [
+
+    {
+      "name": "Dall's porpoise",
+    }, {
+      "name": "Dall sheep",
+    }, {
+      "name": "Dark kangaroo mouse",
+    }, {
+      "name": "Dasypus",
+    }, {
+      "name": "Delphinidin",
+    },
+    {
+      "name": "Delmarva fox squirrel",
+    }, {
+      "name": "Desert cottontail",
+    }, {
+      "name": "Desert kangaroo rat",
+    }, {
+      "name": "Desert pocket mouse",
+    }, {
+      "name": "Desert red bat",
+    }, {
+      "name": "Desert woodrat",
+    }, {
+      "name": "Dhole",
+    }, {
+      "name": "Dipodidae",
+    }, {
+      "name": "Dire wolf",
+    }, {
+      "name": "Donkey",
+    }, {
+      "name": "Douglas squirrel",
+    }, {
+      "name": "Dugongidae",
+    }, {
+      "name": "Dulzura kangaroo rat",
+    }, {
+      "name": "Desert bighorn sheep",
+    }, {
+      "name": "Dusky-footed woodrat",
+    }, {
+      "name": "Dwarf shrew",
+    }, {
+      "name": "Deer",
+    }, {
+      "name": "Dwarf sperm whale",
+    }, {
+      "name": "Dasypus bellus",
+    }, {
+      "name": "Donkey",
+    }, {
+      "name": "Dark-nosed small-footed myotis",
+    }
+        ]
+      },
+      {
+        "name": "E",
+        "children": [
+    {
+      "name": "Eastern chipmunk",
+    }, {
+      "name": "Eastern cottontail",
+    }, {
+      "name": "Eastern gray squirrel",
+    }, {
+      "name": "Eastern harvest mouse",
+    }, {
+      "name": "Eared seal",
+    }, {
+      "name": "Eastern heather vole",
+    }, {
+      "name": "Eastern mole",
+    }, {
+      "name": "Eastern red bat",
+    }, {
+      "name": "Eastern small-footed myotis",
+    }, {
+      "name": "Eastern spotted skunk",
+    }, {
+      "name": "Elephantidae",
+    }, {
+      "name": "Elk",
+    }, {
+      "name": "Equidae",
+    },    {
+      "name": "Equus lambei",
+    }, {
+      "name": "Equus conversidens",
+    }, {
+      "name": "Equus occidentalis",
+    }, {
+      "name": "Equus scotti",
+    },
+    {
+      "name": "Euceratherium",
+    }, {
+      "name": "Eremotherium",
+    }, {
+      "name": "Eschrichtiidae",
+    }, {
+      "name": "Eulipotyphla",
+    }, {
+      "name": "European hare",
+    }, {
+      "name": "European rabbit",
+    }, {
+      "name": "Evening bat",
+    }, {
+      "name": "Eastern woodrat",
+    }, {
+      "name": "Eastern wolf",
+    }, {
+      "name": "Even-toed ungulate"
+    }
+        ]
+      },
+      {
+        "name": "F",
+        "children": [
+    {
+      "name": "Florida bonneted bat",
+    }, {
+      "name": "Fin whale",
+    }, {
+      "name": "Free-tailed bat",
+    }, {
+      "name": "Fox squirrel",
+    },{
+      "name": "Fallow deer",
+    }, {
+      "name": "Felidae",
+    }, {
+      "name": "Feral cat",
+    }, {
+      "name": "Feral goat",
+    }, {
+      "name": "Feral horse",
+    }, {
+      "name": "False killer whale",
+    }, {
+      "name": "Ferret",
+    }, {
+      "name": "Fisher (animal)",
+    }, {
+      "name": "Florida mouse",
+    }, {
+      "name": "Fog shrew",
+    }, {
+      "name": "Franklin's ground squirrel",
+    }, {
+      "name": "Free-ranging dog",
+    }, {
+      "name": "Fresno kangaroo rat",
+    }, {
+      "name": "Fringed myotis",
+    }, {
+      "name": "Fulvous harvest mouse",
+    }, {
+      "name": "Fraser's dolphin",
+    }
+        ]
+      },
+      {
+        "name": "G",
+        "children": [
+     {
+      "name": "Gemsbok",
+    }, {
+      "name": "Gopher",
+    }, {
+      "name": "Ghost-faced bat",
+    }, {
+      "name": "Giant kangaroo rat",
+    }, {
+      "name": "Giant pika",
+    }, {
+      "name": "Glacier Bay water shrew",
+    }, {
+      "name": "Glyptotherium",
+    }, {
+      "name": "Golden-mantled ground squirrel",
+    }, {
+      "name": "Golden-brown mouse lemur",
+    }, {
+      "name": "Gray-collared chipmunk",
+    }, {
+      "name": "Gray-footed chipmunk",
+    }, {
+      "name": "Gray bat",
+    }, {
+      "name": "Gray fox",
+    }, {
+      "name": "Gray wolf",
+    }, {
+      "name": "Great Basin pocket mouse",
+    }, {
+      "name": "Greater long-nosed bat",
+    },    {
+      "name": "Groundhog",
+    }, {
+      "name": "Grey seal",
+    }, {
+      "name": "Grizzly bear",
+    }, {
+      "name": "Guadalupe fur seal",
+    }, {
+      "name": "Gulf Coast jaguarundi",
+    }, {
+      "name": "Gulf Coast kangaroo rat",
+    }, {
+      "name": "Gunnison's prairie dog",
+    }, {
+      "name": "Golden-mantled ground squirrel",
+    }, {
+      "name": "Gopher",
+    }, {
+      "name": "Grasshopper mouse",
+    }, {
+      "name": "Gray whale",
+    }, {
+      "name": "Gervais' beaked whale",
+    }, {
+      "name": "Ginkgo-toothed beaked whale",
+    }
+        ]
+      },
+      {
+        "name": "H",
+        "children": [
+    {
+      "name": "Hairy-legged vampire bat",
+    }, {
+      "name": "Hairy-tailed mole",
+    }, {
+      "name": "Harbour porpoise",
+    }, {
+      "name": "Harbor seal",
+    }, {
+      "name": "Harp seal",
+    }, {
+      "name": "Harrington's mountain goat",
+    }, {
+      "name": "Harris's antelope squirrel",
+    }, {
+      "name": "Hawaiian monk seal",
+    }, {
+      "name": "Hawaiian wild cattle",
+    }, {
+      "name": "Hector's beaked whale",
+    }, {
+      "name": "Heermann's kangaroo rat",
+    }, {
+      "name": "Hemiauchenia",
+    }, {
+      "name": "Heteromyidae",
+    }, {
+      "name": "Himalayan tahr",
+    }, {
+      "name": "Hispid cotton rat",
+    }, {
+      "name": "Hispid pocket mouse",
+    }, {
+      "name": "Hoary bat",
+    }, {
+      "name": "Hoary marmot",
+    }, {
+      "name": "Hog-nosed skunk",
+    }, {
+      "name": "Holmesina",
+    }, {
+      "name": "Homotherium",
+    }, {
+      "name": "Hooded seal",
+    }, {
+      "name": "Hooded skunk",
+    }, {
+      "name": "Hopi chipmunk",
+    }, {
+      "name": "House mouse",
+    }, {
+      "name": "Humboldt's flying squirrel",
+    }, {
+      "name": "Hawaiian hoary bat",
+    }, {
+      "name": "Humpback whale",
+    }, {
+      "name": "Hubbs' beaked whale",
+    }
+        ]
+      },
+      {
+        "name": "I",
+        "children": [ 
+    {
+      "name": "Indiana bat",
+    }, {
+      "name": "Insular vole",
+    }, {
+      "name": "Inyo shrew",
+    }, {
+      "name": "Island fox",
+    }, {
+      "name": "Isthmus of Tehuantepec",
+    }, {
+      "name": "Indian hog deer",
+    }
+        ]
+      },
+      {
+        "name": "J",
+        "children": [
+    {
+      "name": "Jaguar",
+    }, {
+      "name": "Jaguarundi",
+    },
+    {
+      "name": "Javan mongoose",
+    }, {
+      "name": "Juan Fernández fur seal",
+    }
+        ]
+      },
+      {
+        "name": "K",
+        "children": [
+    {
+      "name": "Knox Jones's pocket gopher",
+    }, {
+      "name": "Kangaroo rat",
+    }, {
+      "name": "Keen's myotis",
+    }, {
+      "name": "Kit fox",
+    }, {
+      "name": "Killer whale",
+    }, {
+      "name": "Kodiak bear",
+    }, {
+      "name": "Kogiidae",
+    }, {
+      "name": "Key deer",
+    }, {
+      "name": "Key Largo woodrat",
+    }
+        ]
+      },
+      {
+        "name": "L",
+        "children": [
+    {
+      "name": "Leaf-nosed bat",
+    }, {
+      "name": "Long-beaked common dolphin",
+    }, {
+      "name": "Long-tailed shrew",
+    }, {
+      "name": "Long-tailed vole",
+    },  {
+      "name": "Long-finned pilot whale",
+    }, {
+      "name": "Lagomorpha",
+    }, {
+      "name": "Least-concern species",
+    }, {
+      "name": "Least chipmunk",
+    }, {
+      "name": "Least weasel",
+    }, {
+      "name": "Leporidae",
+    }, {
+      "name": "Lesser long-nosed bat",
+    }, {
+      "name": "Little brown bat",
+    }, {
+      "name": "Little pocket mouse",
+    }, {
+      "name": "Lodgepole chipmunk",
+    }, {
+      "name": "Long-eared chipmunk",
+    }, {
+      "name": "Long-legged myotis",
+    }, {
+      "name": "Long-tailed pocket mouse",
+    }, {
+      "name": "Long-tailed shrew",
+    }, {
+      "name": "Long-tailed vole",
+    }, {
+      "name": "Long-tailed weasel",
+    }
+        ]
+      },
+      {
+        "name": "M",
+        "children": [
+    {
+      "name": "Mexican free-tailed bat",
+    }, {
+      "name": "Morro Bay kangaroo rat",
+    },{
+      "name": "Mammutidae",
+    }, {
+      "name": "Margay",
+    }, {
+      "name": "Maritime shrew",
+    }, {
+      "name": "Marsh rabbit",
+    }, {
+      "name": "Marsh rice rat",
+    },
+    {
+      "name": "Manatee",
+    }, {
+      "name": "Marsh shrew",
+    }, {
+      "name": "Mazama pocket gopher",
+    }, {
+      "name": "Meadow jumping mouse",
+    }, {
+      "name": "Meadow vole",
+    }, {
+      "name": "Megalonychidae",
+    }, {
+      "name": "Megalonyx",
+    }, {
+      "name": "Megatheriidae",
+    }, {
+      "name": "Mephitidae",
+    }, {
+      "name": "Merriam's chipmunk",
+    },
+    {
+      "name": "Manzano mountain cottontail",
+    }, {
+      "name": "Merriam's ground squirrel",
+    }, {
+      "name": "Merriam's pocket mouse",
+    }, {
+      "name": "Merriam's shrew",
+    }, {
+      "name": "Mesquite mouse",
+    }, {
+      "name": "Mexican fox squirrel",
+    }, {
+      "name": "Mexican free-tailed bat",
+    }, {
+      "name": "Mexican ground squirrel",
+    }, {
+      "name": "Mexican long-tongued bat",
+    }, {
+      "name": "Melon-headed whale",
+    }, {
+      "name": "Mexican spiny pocket mouse",
+    }, {
+      "name": "Mexican vole",
+    }, {
+      "name": "Mexican woodrat",
+    }, {
+      "name": "Mexican vole",
+    },  {
+      "name": "Mount Graham red squirrel",
+    }, {
+      "name": "Mohave ground squirrel",
+    }, {
+      "name": "Mongoose",
+    }, {
+      "name": "Monodontidae",
+    }, {
+      "name": "Montane shrew",
+    }, {
+      "name": "Montane vole",
+    }, {
+      "name": "Moose",
+    }, {
+      "name": "Mormoopidae",
+    }, {
+      "name": "Mouflon",
+    }, {
+      "name": "Mount Lyell shrew",
+    }, {
+      "name": "Mountain beaver",
+    }, {
+      "name": "Mountain cottontail",
+    }, {
+      "name": "Mountain goat",
+    }, {
+      "name": "Mule deer",
+    }, {
+      "name": "Muroidea",
+    }, {
+      "name": "Muskox",
+    }, {
+      "name": "Muskrat",
+    }, {
+      "name": "Mustelidae",
+    }, {
+      "name": "Mylodontidae",
+    }, {
+      "name": "Mylohyus",
+    }
+        ]
+      },
+      {
+        "name": "N",
+        "children": [
+    {
+      "name": "New World porcupine",
+    }, {
+      "name": "Notiosorex cockrumi",
+    }, {
+      "name": "North Atlantic right whale",
+    }, {
+      "name": "North Pacific right whale",
+    }, {
+      "name": "Northern bottlenose whale",
+    }, {
+      "name": "Northern right whale dolphin",
+    }, {
+      "name": "Northern long-eared bat (myotis)",
+    }, {
+      "name": "Nelson's collared lemming",
+    }, {
+      "name": "Nelson's pocket mouse",
+    }, {
+      "name": "Neochoerus aesopi",
+    }, {
+      "name": "Neochoerus pinckneyi",
+    }, {
+      "name": "New England cottontail",
+    }, {
+      "name": "New Mexico shrew",
+    }, {
+      "name": "Nilgai",
+    }, {
+      "name": "Nine-banded armadillo",
+    }, {
+      "name": "North American beaver",
+    }, {
+      "name": "North American brown lemming",
+    }, {
+      "name": "North American least shrew",
+    }, {
+      "name": "North American porcupine",
+    }, {
+      "name": "Northern Baja deer mouse",
+    }, {
+      "name": "Northern Idaho ground squirrel",
+    }, {
+      "name": "Northern bog lemming",
+    }, {
+      "name": "Northern collared lemming",
+    }, {
+      "name": "Northern elephant seal",
+    }, {
+      "name": "Northern flying squirrel",
+    }, {
+      "name": "Northern fur seal",
+    }, {
+      "name": "Northern grasshopper mouse",
+    }, {
+      "name": "Northern long-eared bat (myotis)",
+    }, {
+      "name": "Northern pocket gopher",
+    }, {
+      "name": "Northern pygmy mouse",
+    }, {
+      "name": "Northern red-backed vole",
+    }, {
+      "name": "North American river otter",
+    }, {
+      "name": "Northern rock mouse",
+    }, {
+      "name": "Northern short-tailed shrew",
+    }, {
+      "name": "Northern yellow bat",
+    }, {
+      "name": "Northwestern deer mouse",
+    }, {
+      "name": "Nothrotheriidae",
+    }, {
+      "name": "Nothrotheriops",
+    }
+        ]
+      },
+      {
+        "name": "O",
+        "children": [
+    {
+      "name": "Opossum",
+    }, {
+      "name": "Oryzomys couesi",
+    },{
+      "name": "Ocelot",
+    }, {
+      "name": "Odobenidae",
+    }, {
+      "name": "Ogilvie Mountains collared lemming",
+    }, {
+      "name": "Oldfield mouse",
+    }, {
+      "name": "Olive-backed pocket mouse",
+    }, {
+      "name": "Olympic marmot",
+    }, {
+      "name": "Ord's kangaroo rat",
+    }, {
+      "name": "Ornate shrew",
+    }, {
+      "name": "Osgood's mouse",
+    },   {
+      "name": "Olympic shrew",
+    },
+        ]
+      },
+      {
+        "name": "P",
+        "children": [
+    {
+      "name": "Panthera spelaea",
+    }, {
+      "name": "Pygmy killer whale",
+    }, {
+      "name": "Pygmy sperm whale",
+    }, {
+      "name": "Pacific white-sided dolphin",
+    }, {
+      "name": "Perrin's beaked whale",
+    },  {
+      "name": "Pika",
+    }, {
+      "name": "Pacific Ocean",
+    }, {
+      "name": "Pacific jumping mouse",
+    }, {
+      "name": "Pacific shrew",
+    }, {
+      "name": "Palaeolama",
+    }, {
+      "name": "Pale kangaroo mouse",
+    }, {
+      "name": "Pallid bat",
+    }, {
+      "name": "Palmer's chipmunk",
+    }, {
+      "name": "Pampatheriidae",
+    }, {
+      "name": "Panamint chipmunk",
+    }, {
+      "name": "Paramylodon",
+    }, {
+      "name": "Melon-headed whale",
+    }, {
+      "name": "Odd-toed ungulate",
+    }, {
+      "name": "Pacific pocket mouse",
+    }, {
+      "name": "Peromyscus maniculatus",
+    }, {
+      "name": "Peromyscus nesodytes",
+    }, {
+      "name": "Peromyscus",
+    },
+    {
+      "name": "Pacific Ocean",
+    },
+    {
+      "name": "Pacific jumping mouse",
+    },
+    {
+      "name": "Pacific shrew",
+    },
+    {
+      "name": "Palaeolama",
+    },
+    {
+      "name": "Pale kangaroo mouse",
+    },
+    {
+      "name": "Pallid bat",
+    },
+    {
+      "name": "Palmer's chipmunk",
+    },
+    {
+      "name": "Pampatheriidae",
+    },
+    {
+      "name": "Panamint chipmunk",
+    },
+    {
+      "name": "Paramylodon",
+    },    {
+      "name": "Pipistrellus",
+    },
+    {
+      "name": "Pacific pocket mouse",
+    },
+    {
+      "name": "Peromyscus maniculatus",
+    },
+    {
+      "name": "Peromyscus nesodytes",
+    },
+    {
+      "name": "Peromyscus",
+    },
+    {
+      "name": "Peromyscus",
+    },
+    {
+      "name": "Perdido Key beach mouse",
+    },
+    {
+      "name": "Physeteroidea",
+    },
+    {
+      "name": "Physical geography",
+    },
+    {
+      "name": "Pilosa",
+    },
+    {
+      "name": "Pilosans of the Caribbean",
+    },
+    {
+      "name": "Pinyon mouse",
+    },
+    {
+      "name": "Piute ground squirrel",
+    },
+    {
+      "name": "Plains harvest mouse",
+    },
+    {
+      "name": "Plains pocket gopher",
+    },
+    {
+      "name": "Plains pocket mouse",
+    },
+    {
+      "name": "Platygonus",
+    },
+    {
+      "name": "Pleistocene",
+    },
+    {
+      "name": "Polar bear",
+    },
+    {
+      "name": "Polynesian rat",
+    },
+    {
+      "name": "Porpoise",
+    },
+    {
+      "name": "Prairie shrew",
+    },
+    {
+      "name": "Prairie vole",
+    },
+    {
+      "name": "Preble's shrew",
+    },
+    {
+      "name": "Pribilof Island shrew",
+    },
+    {
+      "name": "Pristine mustached bat",
+    },
+    {
+      "name": "Proboscidea",
+    },    {
+      "name": "Peccary",
+    },
+    {
+      "name": "Procyonidae",
+    },
+    {
+      "name": "Pantropical spotted dolphin",
+    },
+    {
+      "name": "Pronghorn",
+    },
+    {
+      "name": "Pristine mustached bat",
+    },
+    {
+      "name": "Pygmy beaked whale",
+    },
+    {
+      "name": "Pygmy blue whale",
+    },
+    {
+      "name": "Pygmy mammoth",
+    },
+    {
+      "name": "Pygmy rabbit",
+    }
+        ]
+      },
+      {
+        "name": "R",
+        "children": [ 
+    {
+      "name": "Risso's dolphin",
+    }, {
+      "name": "Reindeer",
+    }, {
+      "name": "Rorqual",
+    }, {
+      "name": "Raccoon",
+    },
+    {
+      "name": "Rafinesque's big-eared bat",
+    },
+    {
+      "name": "Rancholabrean",
+    },
+    {
+      "name": "Reindeer",
+    },
+    {
+      "name": "Red-tailed chipmunk",
+    },
+    {
+      "name": "Red deer",
+    },
+    {
+      "name": "Red fox",
+    },
+    {
+      "name": "Red tree vole",
+    },
+    {
+      "name": "Red wolf",
+    },
+    {
+      "name": "Rhesus macaque",
+    },
+    {
+      "name": "Ribbon seal",
+    },
+    {
+      "name": "Richardson's collared lemming",
+    },
+    {
+      "name": "Richardson's ground squirrel",
+    },
+    {
+      "name": "Ring-tailed cat",
+    },
+    {
+      "name": "Ringed seal",
+    },
+    {
+      "name": "Robust cottontail",
+    },
+    {
+      "name": "Rock pocket mouse",
+    },
+    {
+      "name": "Rock squirrel",
+    },
+    {
+      "name": "Rock vole",
+    },
+    {
+      "name": "Rodent",
+    },
+    {
+      "name": "Round-tailed ground squirrel",
+    },
+    {
+      "name": "Round-tailed muskrat",
+    },  {
+      "name": "Rough-toothed dolphin",
+    }
+        ]
+      },
+      {
+        "name": "S",
+        "children": [
+
+    {
+      "name": "San Bernardino kangaroo rat",
+    }, {
+      "name": "Short-beaked common dolphin",
+    }, {
+      "name": "Short-finned pilot whale",
+    }, {
+      "name": "Stoat",
+    }, {
+      "name": "Sierra Nevada bighorn sheep",
+    }, {
+      "name": "Sonoran pronghorn"
+    }, {
+      "name": "Sei whale",
+    }, {
+      "name": "Steller's sea cow",
+    }, {
+      "name": "Sowerby's beaked whale",
+    }, {
+      "name": "Saussure's long-nosed bat",
+    }, {
+      "name": "Stejneger's beaked whale",
+    }, {
+      "name": "Sperm whale",
+    }, {
+      "name": "Sagebrush vole",
+    },
+    {
+      "name": "Saiga antelope",
+    },
+    {
+      "name": "Saint Lawrence Island shrew",
+    },
+    {
+      "name": "Salt marsh harvest mouse",
+    },
+    {
+      "name": "Sambar deer",
+    },
+    {
+      "name": "San Diego pocket mouse",
+    },
+    {
+      "name": "San Joaquin antelope squirrel",
+    },
+    {
+      "name": "San Joaquin pocket mouse",
+    },
+    {
+      "name": "Squirrel",
+    },
+    {
+      "name": "Sciurus",
+    },
+    {
+      "name": "Sea mink",
+    },
+    {
+      "name": "Sea otter",
+    },
+    {
+      "name": "Seminole bat",
+    },
+    {
+      "name": "Sika deer",
+    },
+    {
+      "name": "Silky pocket mouse",
+    },
+    {
+      "name": "Silver-haired bat",
+    },
+    {
+      "name": "Singing vole",
+    },
+    {
+      "name": "Sirenia",
+    },
+    {
+      "name": "Siskiyou chipmunk",
+    },
+    {
+      "name": "Smilodon",
+    },
+    {
+      "name": "Smoky shrew",
+    },
+    {
+      "name": "Snowshoe hare",
+    },
+    {
+      "name": "Sonoma chipmunk",
+    },
+    {
+      "name": "Shrew",
+    },
+    {
+      "name": "Southeastern myotis",
+    },
+    {
+      "name": "Southeastern shrew",
+    },
+    {
+      "name": "Southern Idaho ground squirrel",
+    },
+    {
+      "name": "Southern Plains woodrat",
+    },
+    {
+      "name": "Southern bog lemming",
+    },
+    {
+      "name": "Southern flying squirrel",
+    },
+    {
+      "name": "Southern grasshopper mouse",
+    },
+    {
+      "name": "Southern red-backed vole",
+    },
+    {
+      "name": "Southern short-tailed shrew",
+    },
+    {
+      "name": "Southern yellow bat",
+    },
+    {
+      "name": "Southwestern myotis",
+    },
+    {
+      "name": "Spiny pocket mouse",
+    },
+    {
+      "name": "Spotted bat",
+    },
+    {
+      "name": "Spotted ground squirrel",
+    },
+    {
+      "name": "Spotted seal",
+    },
+    {
+      "name": "Star-nosed mole",
+    },
+    {
+      "name": "Steller sea lion",
+    },
+    {
+      "name": "Striped dolphin",
+    },
+    {
+      "name": "Spinner dolphin",
+    },
+    {
+      "name": "Stephen's woodrat",
+    },
+    {
+      "name": "Stephens's kangaroo rat",
+    },
+    {
+      "name": "Steppe bison",
+    },
+    {
+      "name": "Stockoceros",
+    },
+    {
+      "name": "Striped skunk",
+    },
+    {
+      "name": "Suidae",
+    },
+    {
+      "name": "Swamp rabbit",
+    },
+    {
+      "name": "Swift fox",
+    },
+    {
+      "name": "Sylvilagus palustris hefneri",
+    }
+        ]
+      },
+      {
+        "name": "T",
+        "children": [ 
+    {
+      "name": "Tropical bottlenose whale",
+    }, {
+      "name": "Tremarctos floridanus",
+    }, {
+      "name": "Tricolored bat",
+    }, {
+      "name": "True's beaked whale",
+    }, {
+      "name": "Taiga vole",
+    },
+    {
+      "name": "Talpidae",
+    },
+    {
+      "name": "Tapir",
+    },
+    {
+      "name": "Tapirus californicus",
+    },
+    {
+      "name": "Tapirus copei",
+    },
+    {
+      "name": "Tapirus merriami",
+    },
+    {
+      "name": "Tapirus veroensis",
+    },
+    {
+      "name": "Tarpan",
+    },
+    {
+      "name": "Taxonomy (biology)",
+    },
+    {
+      "name": "Tetrameryx",
+    },
+    {
+      "name": "Antelope squirrel",
+    },
+    {
+      "name": "Texas kangaroo rat",
+    },
+    {
+      "name": "Texas mouse",
+    },
+    {
+      "name": "Thirteen-lined ground squirrel",
+    },
+    {
+      "name": "Tipton kangaroo rat",
+    },
+    {
+      "name": "Townsend's big-eared bat",
+    },
+    {
+      "name": "Townsend's chipmunk",
+    },
+    {
+      "name": "Townsend's ground squirrel",
+    },
+    {
+      "name": "Townsend's mole",
+    },
+    {
+      "name": "Townsend's pocket gopher",
+    },
+    {
+      "name": "Townsend's vole",
+    },
+    {
+      "name": "Trowbridge's shrew",
+    },
+    {
+      "name": "Tundra shrew",
+    },
+    {
+      "name": "Tundra vole",
+    },
+    {
+      "name": "Tursiops truncatus gillii",
+    }
+        ]
+      },
+      {
+        "name": "U",
+        "children": [
+    {
+      "name": "Underwood's bonneted bat",
+    }, {
+      "name": "Uinta chipmunk",
+    },
+    {
+      "name": "Uinta ground squirrel",
+    },
+    {
+      "name": "Unalaska collared lemming",
+    },
+    {
+      "name": "Ungava collared lemming",
+    },
+    {
+      "name": "Utah prairie dog",
+    }
+        ]
+      },
+      {
+        "name": "V",
+        "children": [ 
+    {
+      "name": "Velvety fruit-eating bat",
+    },    {
+      "name": "Vagrant shrew",
+    },
+    {
+      "name": "Vancouver Island marmot",
+    },
+    {
+      "name": "Velvety free-tailed bat",
+    },
+    {
+      "name": "Vervet monkey",
+    },
+    {
+      "name": "Vesper bat",
+    },
+    {
+      "name": "Virginia opossum",
+    }
+        ]
+      },
+      {
+        "name": "W",
+        "children": [
+    {
+      "name": "Wagner's bonneted bat",
+    }, {
+      "name": "Wood bison",
+    }, {
+      "name": "White-beaked dolphin",
+    },
+    {
+      "name": "West Indian manatee",
+    }, {
+      "name": "Walrus",
+    },
+    {
+      "name": "Washington ground squirrel",
+    },
+    {
+      "name": "Water vole (North America)",
+    },
+    {
+      "name": "Wayback Machine",
+    },
+    {
+      "name": "Western gray squirrel",
+    },
+    {
+      "name": "Western harvest mouse",
+    },
+    {
+      "name": "Western heather vole",
+    },
+    {
+      "name": "Western jumping mouse",
+    },
+    {
+      "name": "Western mastiff bat",
+    },
+    {
+      "name": "Red-backed vole",
+    },
+    {
+      "name": "Western small-footed bat",
+    },
+    {
+      "name": "Western spotted skunk",
+    },
+    {
+      "name": "Western yellow bat",
+    },
+    {
+      "name": "White-ankled mouse",
+    },
+    {
+      "name": "White-eared pocket mouse",
+    },
+    {
+      "name": "White-footed mouse",
+    },
+    {
+      "name": "White-footed vole",
+    },
+    {
+      "name": "White-nosed coati",
+    },
+    {
+      "name": "White-sided jackrabbit",
+    },
+    {
+      "name": "White-tailed antelope squirrel",
+    },
+    {
+      "name": "White-tailed deer",
+    },
+    {
+      "name": "White-tailed jackrabbit",
+    },
+    {
+      "name": "White-tailed prairie dog",
+    },
+    {
+      "name": "White-throated woodrat",
+    },
+    {
+      "name": "White-throated woodrat",
+    },
+    {
+      "name": "Wild boar",
+    },
+    {
+      "name": "Wildcat",
+    },
+    {
+      "name": "Wolverine",
+    },
+    {
+      "name": "Woodland jumping mouse",
+    },
+    {
+      "name": "Woodland vole",
+    },
+    {
+      "name": "Woolly mammoth",
+    },
+    {
+      "name": "Wyoming ground squirrel",
+    },
+    {
+      "name": "Wyoming pocket gopher",
+    }
+        ]
+      },
+      {
+        "name": "Y",
+        "children": [
+    {
+      "name": "Yellow-pine chipmunk",
+    },    {
+      "name": "Yellow-bellied marmot",
+    },
+    {
+      "name": "Yellow-cheeked chipmunk",
+    },
+    {
+      "name": "Yellow-faced pocket gopher",
+    },
+    {
+      "name": "Yellow-nosed cotton rat",
+    },
+    {
+      "name": "Yuma myotis",
+    }
+        ]
+      },
+      {
+        "name": "Z",
+        "children": [
+    {
+      "name": "Zacatecan deer mouse",
+    }
+        ]
+      }
+    ]
+  }
+];
+
+// ************** Generate the tree diagram  *****************
+var margin = {top: 20, right: 120, bottom: 20, left: 120},
+  width = 960 - margin.right - margin.left,
+  height = 7500 - margin.top - margin.bottom;
+  
+var i = 0;
+
+var tree = d3.layout.tree()
+  .size([height, width]);
+
+var diagonal = d3.svg.diagonal()
+  .projection(function(d) { return [d.y, d.x]; });
+
+var svg = d3.select("body").append("svg")
+  .attr("width", width + margin.right + margin.left)
+  .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+root = treeData[0];
+  
+update(root);
+
+function update(source) {
+
+  // Compute the new tree layout.
+  var nodes = tree.nodes(root).reverse(),
+    links = tree.links(nodes);
+
+  // Normalize for fixed-depth.
+  nodes.forEach(function(d) { d.y = d.depth * 180; });
+
+  // Declare the nodes…
+  var node = svg.selectAll("g.node")
+    .data(nodes, function(d) { return d.id || (d.id = ++i); });
+
+  // Enter the nodes.
+  var nodeEnter = node.enter().append("g")
+    .attr("class", "node")
+    .attr("transform", function(d) { 
+      return "translate(" + d.y + "," + d.x + ")"; });
+
+  nodeEnter.append("circle")
+    .attr("r", function(d) { return 1; })
+    .style("stroke", function(d) { return d.type; })
+    .style("fill", function(d) { return d.level; });
+
+  nodeEnter.append("text")
+    .attr("x", function(d) { 
+      return d.children || d._children ? 
+      (d.value + 4) * -1 : d.value + 4 })
+    .attr("dy", ".35em")
+    .attr("text-anchor", function(d) { 
+      return d.children || d._children ? "end" : "start"; })
+    .text(function(d) { return d.name; })
+    .style("fill-opacity", 1);
+
+  // Declare the links…
+  var link = svg.selectAll("path.link")
+    .data(links, function(d) { return d.target.id; });
+
+  // Enter the links.
+  link.enter().insert("path", "g")
+    .attr("class", "link")
+      .style("stroke", function(d) { return d.target.level; })
+    .attr("d", diagonal);
+
+}
+
+</script>
+  
+  </body>
+</html>

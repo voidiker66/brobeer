@@ -1,0 +1,18 @@
+{% extends "layout.html" %} 
+
+{% block content %}
+
+<body>
+    <div class="container">
+        <h3 id="Name">{{result ["meetup_title"] }}</h3>
+        <h4 id="address">
+        {% if result["meetup_location"] is not none %}{{ result["meetup_location"] }}{% endif %}{% if result["meetup_state"] is not none %}, {{ result ["meetup_state"] }}{% endif %} 
+        </h4>
+        <p id="summary">{{ result["meetup_summary"] }}</p>
+        <p id="group">Group: {{result ["meetup_group"] }}</p>
+        <p>Check out the event here: <a href="{{ result['meetup_event_url']}}" target="_blank">{{ result['meetup_event_url']}}</a></p>
+        <img id="page-image" src={{ result[ "meetup_image"] }}>    
+    </div>
+</body>
+
+{% endblock %}

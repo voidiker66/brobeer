@@ -1,0 +1,179 @@
+
+.carousel-indicators .active {
+  background-color: #4f6332;
+  border-color: #3b6332;
+}
+.carousel-indicators li {
+  /*background-color: #3b6332;*/
+  border-color: #3b6332;
+}
+.carousel-control.left, .carousel-control.right {
+  background-image: none;
+}
+.carousel-control .hover {
+  background-image: none;
+}
+
+body {
+  color: #fff;
+  background-color: #4f6332;
+  font-family: stonehenge;
+}
+#home {
+  overflow: hidden;
+}
+
+h1 {
+	text-shadow: 1px -1px #00FF6C;
+}
+
+.emphasis::before {
+	content: "";
+	position: absolute;
+  	top: 0; 
+  	left: 0;
+  	width: 100%; 
+  	height: 100%;  
+	opacity: .4; 
+  	z-index: -1;
+  	background-color: black;
+}
+
+.emphasis {
+  background-color: #fff;
+  background-color: rgba(0,0,0,0.3);
+  display: inline-block;
+  width: auto;
+  margin: 10px;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.btn {
+	background-color: #f78733;
+}
+
+#gradient
+{
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+  z-index: -2;
+  position: absolute;
+}
+
+.card {
+  border: 1px solid black;
+  margin: 2%;
+  width: 100%;
+  height: auto;
+  text-align: center;
+  background-color: #022301;  
+}
+.card-img-top {
+  width: 100%;
+  height: 15vw;
+  object-fit: cover;
+}
+#headshot {
+  width: 100%;
+  height: auto;
+}
+
+#page-nav {
+  text-align: center;
+  color: green;
+}
+#page-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
+  /* Make the image fully responsive */
+  .carousel-inner img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50px;  
+  }
+
+  .slideshow {
+    width: 50%;
+    height: 50%;
+  }
+
+@media (min-width: 768px) {
+
+  .mobile {
+    display: none;
+  }
+
+svg {
+  pointer-events: none;
+  position: absolute;
+  visibility: hidden;
+  overflow: visible;
+}
+
+#fern {
+  width: 300px;
+  height: auto;
+  z-index: -1;
+}
+
+#sun {
+  width: 200px;
+  top: 0%;
+  right: 0%;
+  transform: translateX(70px) translateY(-70px);
+  z-index: 1;
+}
+
+[id^='flowers'] g {
+  fill: #008eff;
+  z-index: -1;
+}
+
+[id^="spiral"] {
+  stroke-width: 2px;
+  z-index: -1;
+}
+
+}
+
+@media (max-width: 768px) {
+
+.desktop {
+  display: none;
+}
+
+.mobile .container .col-sm-4 .card {
+  background-color: #5c7a32;
+}
+
+svg {
+  display: none;
+}
+
+#fern {
+  display: none;
+}
+
+#sun {
+  display: none;
+}
+
+[id^='flowers'] g {
+  display: none;
+}
+
+[id^="spiral"] {
+  display: none;
+}
+
+}

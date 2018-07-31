@@ -1,0 +1,35 @@
+@startuml
+object parks
+
+parks : park_id
+parks : park_name
+parks : park_state
+parks : park_city
+parks : park_description
+parks : park_weather
+parks : park_lat
+parks : park_long
+parks : park_phone
+parks : park_phone_display
+parks : park_address
+parks : park_rating
+parks : park_reviews
+parks : park_image_url
+
+object wiki
+
+wiki : wiki_title
+wiki : wiki_summary
+wiki : wiki_state
+wiki : wiki_image
+
+object meetup
+
+meetup : meetup_title
+meetup : meetup_summary
+meetup : meetup_image
+meetup : meetup_location
+meetup : meetup_state
+meetup : meetup_country
+meetup : meetup_group
+@enduml

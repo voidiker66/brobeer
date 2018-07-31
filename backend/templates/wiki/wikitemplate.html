@@ -1,0 +1,12 @@
+{% extends "layout.html" %} 
+
+{% block content %}
+
+<body>
+  <div class="container">
+    <h3 id="Name">{{ result["wiki_title"] }}</h3>
+    <p id="summary">{{ result["wiki_summary"] }}</p>
+    <img id="page-image" src={{ result["wiki_image"]}} alt="{{ result["wiki_title"]}}"></img>
+  </div>
+</body>
+{% endblock %}

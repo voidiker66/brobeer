@@ -1,0 +1,129 @@
+/**
+ * Position icons into circle (SO)
+ * http://stackoverflow.com/q/24814473/1397351 
+ */
+.circle-container {
+	position: relative;
+	width: 48em;
+	height: 48em;
+	padding: 2.8em;
+	border: dashed 1px;
+	border-radius: 50%;
+	margin: 1.75em auto 0;
+}
+.circle-container div {
+	display: block;
+	/*overflow: hidden;*/
+	position: absolute;
+	top: 50%; left: 50%;
+	width: 8em; height: 10em;
+	margin: -2em;
+}
+.circle-container img { display: block; width: 100%; }
+.deg0 { transform: translate(24em); }
+.deg72 { transform: rotate(72deg) translate(24em) rotate(-72deg); }
+.deg144 { transform: rotate(144deg) translate(24em) rotate(-144deg); }
+.deg216 { transform: rotate(216deg) translate(24em) rotate(-216deg); }
+.deg288 { transform: rotate(288deg) translate(24em) rotate(-288deg); }
+.deg315 { transform: rotate(315deg) translate(24em) rotate(-315deg); }
+
+.profile_hover div {
+	display: block;
+	visibility: hidden;
+	top: 0%;
+	left: 0%;
+	width: auto;
+	height: 10em;
+	position: relative;
+	margin: 7%;
+	opacity: 0;
+}
+
+.profile_hover:hover {
+	width: 20em;
+	height: 30em;
+	background-color: #2f841b;
+	border: solid black 1px;
+	border-radius: 5px;
+	transition: 1s;
+    -webkit-transition: 1s;
+}
+
+.profile_hover:hover img {
+	margin: 5px;
+	width: 40%;
+	float: left;
+	transition: 1s;
+    -webkit-transition: 1s;
+}
+
+.profile_hover:hover div {
+	visibility: visible;
+	opacity: 1;
+
+	transition: 1s;
+    -webkit-transition: 1s;
+	transition-delay: 0.75s;
+	-webkit-transition-delay: 0.75s;
+	transition-timing-function: ease-in-out;
+	-webkit-transition-timing-function: ease-in-out;
+}
+
+.circle-container .center:hover {
+	width: 10em; height: 12em;
+	margin: -3em;
+	transition: 0.5s;
+    -webkit-transition: 0.5s;
+
+}
+
+.circle-container .center {
+	width: 8em; height: 10em;
+	margin: -2em;
+	transition: 0.5s;
+    -webkit-transition: 0.5s;
+
+}
+
+
+/* this is just for showing the angle on hover */
+/*.circle-container a:not(.center):before {
+	position: absolute;
+	width: 4em;
+	color: white;
+	opacity: 0;
+	background: rgba(0,0,0,.5);
+	font: 1.25em/3.45 Courier, monospace;
+	letter-spacing: 2px;
+	text-decoration: none;
+	text-indent: -2em;
+	text-shadow: 0 0 .1em deeppink;
+	transition: .7s;
+	content: attr(class)'°';
+}*/
+/*.circle-container a:hover:before { opacity: 1; }*/
+
+/* this is for showing the circle on which the images are placed */
+/*.circle-container:after {
+	position: absolute;
+	top: 2.8em; left: 2.8em;
+	width: 24em; height: 24em;
+	opacity: .3;
+	pointer-events: none;
+	content: '';
+}*/
+/*.circle-container:hover:after { opacity: 1; }*/
+/*.circle-container a:not(.center):after {
+	position: absolute;
+	top: 50%; left: 50%;
+	width: 4px; height: 4px;
+	border-radius: 50%;
+	box-shadow: 0 0 .5em .5em white;
+	margin: -2px;
+	background: deeppink;
+	opacity: .3;
+	content: '';
+}
+.circle-container:hover a:after { opacity: 1; }
+.circle-container a:hover:after { opacity: .3; }
+*/

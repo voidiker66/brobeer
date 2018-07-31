@@ -1,0 +1,273 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<body>
+  
+<div class="container">
+  <h1>About Us</h1>
+  <div class="row">
+    <div class="col-lg-6">
+      <h2>Welcome to Parks Are Awesome</h2>
+      <p style="font-size: 18px">
+        Our mission is to promote the amazing parks located throughout the United States and raise awareness about the problems that
+        they may face. There is so much beauty to be found in the wildlife and plantlife that live in parks. Our hope is
+        that people of all ages will use our service to connect with nature and enjoy parks. Parks Are Awesome provides users
+        with an interface to find local parks and search for nearby community events and volunteering opportunities taking place.
+        We also provide users with a database of the flora and fauna native to regions throughout the U.S.
+      </p>
+      <p style="font-size: 18px">
+        What are you waiting for? Find an awesome park near you today!
+      </p>
+    </div>
+    <div class="col-lg-6">
+      <br/>
+      <img src="{{url_for('static', filename = 'images/park2.jpg')}}" alt="Park" style="height:100%; width:100%">
+    </div>
+  </div>
+  <hr/>
+  <h2> Meet the developers!</h2>
+  <br/>
+  <div class="row">
+
+<div class='desktop circle-container'>
+  <div class='center'><img src="{{url_for('static', filename = 'images/logo.png')}}"></div>
+  <div class='deg0 profile_hover'>
+    <img src="{{url_for('static', filename = 'images/Austin.jpg')}}">
+    <div>
+      <h3>
+        <b>Austin Ikerd</b>
+      </h3>
+    </div>
+    <div>
+      <p>
+        Austin is a 4th year Computer Science student who loves video games, terrible biographies, and his cute cat.
+      </p>
+          <hr/>
+          <h4>Responsibilities</h4>
+          <h4>No. of commits:&nbsp;
+            <span id="austin-commit">0</span>
+          </h4>
+          <h4>No. of issues:
+            <span id="austin-issue">0</span>
+          </h4>
+          <h4>No. of unit tests:&nbsp;</h4>
+    </div>
+  </div>
+  <div class='deg72 profile_hover'>
+    <img src="{{url_for('static', filename = 'images/Sean.jpg')}}" alt="Sean">
+    <div>
+      <h3>
+        <b>Sean Yi</b>
+      </h3>
+    </div>
+    <div>
+      <p>Sean is a fourth-year CS Major at UT Austin. He enjoys eating. A lot.</p>
+      <hr/>
+      <h4>Responsibilities</h4>
+      <h4>No. of commits:&nbsp;
+        <span id="sean-commit">0</span>
+      </h4>
+      <h4>No. of issues:
+        <span id="sean-issue">0</span>
+      </h4>
+      <h4>No. of unit tests:&nbsp;</h4>
+    </div>
+  </div>
+  <div class='deg144 profile_hover'>
+    <img src="{{url_for('static', filename = 'images/Victor.jpg')}}">
+    <div>
+      <h3>
+        <b>Victor Chau</b>
+      </h3>
+    </div>
+    <div>
+          <p>Victor is a 4th year CS student at UT Austin and loves eating and sports.</p>
+          <hr/>
+          <h4>Responsibilities</h4>
+          <h4>No. of commits:&nbsp;
+            <span id="victor-commit">0</span>
+          </h4>
+          <h4>No. of issues:
+            <span id="victor-issue">0</span>
+          </h4>
+          <h4>No. of unit tests:&nbsp;</h4>
+    </div>
+  </div>
+  <div class='deg216 profile_hover'>
+    <img src="{{url_for('static', filename = 'images/kamran.jpg')}}">
+    <div>
+    <h3>
+          <b>Kamran Khan</b>
+        </h3>
+      </div>
+      <div>
+        <p>I'm currently a senior studying computer science at UT Austin. I enjoy playing poker, eating different types of food,
+          and playing basketball. \m/</p>
+        <hr/>
+        <h4>Responsibilities</h4>
+        <h4>No. of commits:&nbsp;
+          <span id="kamran-commit">0</span>
+        </h4>
+        <h4>No. of issues:
+          <span id="kamran-issue">0</span>
+        </h4>
+        <h4>No. of unit tests:&nbsp;</h4>
+      </div>
+  </div>
+  <div class='deg288 profile_hover'>
+    <img src="{{url_for('static', filename = 'images/joseph.jpg')}}">
+    <div>
+    <h3>
+            <b>Joseph Bess</b>
+          </h3>
+        </div>
+        <div>
+          <p>Joey is a 4th year computer science and mathmatics major at UT.  In his free time he enjoys sleeping and video games.</p>
+          <hr/>
+          <h4>Responsibilities</h4>
+          <h4>No. of commits:&nbsp;
+            <span id="joseph-commit">0</span>
+          </h4>
+          <h4>No. of issues:
+            <span id="joseph-issue">0</span>
+          </h4>
+          <h4>No. of unit tests:&nbsp;</h4>
+  </div>
+</div>
+
+</div>
+
+<div class="mobile row">
+    <div class="container">
+
+      <div class="col-sm-4">
+        <div class="card">
+          <img id="headshot" src="{{url_for('static', filename = 'images/Austin.jpg')}}" alt="Austin">
+          <h3>
+            <b>Austin Ikerd</b>
+          </h3>
+          <p>Austin is a 4th year Computer Science student who loves video games, terrible biographies, and his cute cat.</p>
+          <hr/>
+          <h4>Responsibilities</h4>
+          <h4>No. of commits:&nbsp;
+            <span id="austin-commit">0</span>
+          </h4>
+          <h4>No. of issues:
+            <span id="austin-issue">0</span>
+          </h4>
+          <h4>No. of unit tests:&nbsp;</h4>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card">
+          <img id="headshot" src="{{url_for('static', filename = 'images/Victor.jpg')}}" alt="Victor">
+          <h3>
+            <b>Victor Chau</b>
+          </h3>
+          <p>Victor is a 4th year CS student at UT Austin and loves eating and sports.</p>
+          <hr/>
+          <h4>Responsibilities</h4>
+          <h4>No. of commits:&nbsp;
+            <span id="victor-commit">0</span>
+          </h4>
+          <h4>No. of issues:
+            <span id="victor-issue">0</span>
+          </h4>
+          <h4>No. of unit tests:&nbsp;</h4>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card">
+          <img id="headshot" src="{{url_for('static', filename = 'images/joseph.jpg')}}" alt="Joseph">
+          <h3>
+            <b>Joseph Bess</b>
+          </h3>
+          <p>Joey is a 4th year computer science and mathmatics major at UT.  In his free time he enjoys sleeping and video games.</p>
+          <hr/>
+          <h4>Responsibilities</h4>
+          <h4>No. of commits:&nbsp;
+            <span id="joseph-commit">0</span>
+          </h4>
+          <h4>No. of issues:
+            <span id="joseph-issue">0</span>
+          </h4>
+          <h4>No. of unit tests:&nbsp;</h4>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+    <div class="col-sm-4">
+      <div class="card h-100">
+        <img id="headshot" src="{{url_for('static', filename = 'images/kamran.jpg')}}" alt="Kamran">
+        <h3>
+          <b>Kamran Khan</b>
+        </h3>
+        <p>I'm currently a senior studying computer science at UT Austin. I enjoy playing poker, eating different types of food,
+          and playing basketball. \m/</p>
+        <hr/>
+        <h4>Responsibilities</h4>
+        <h4>No. of commits:&nbsp;
+          <span id="kamran-commit">0</span>
+        </h4>
+        <h4>No. of issues:
+          <span id="kamran-issue">0</span>
+        </h4>
+        <h4>No. of unit tests:&nbsp;</h4>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="card h-100">
+        <img id="headshot" src="{{url_for('static', filename = 'images/Sean.jpg')}}" alt="Sean">
+        <h3>
+          <b>Sean Yi</b>
+        </h3>
+        <p>Sean is a fourth-year CS Major at UT Austin. He enjoys eating. A lot.</p>
+        <hr/>
+        <h4>Responsibilities</h4>
+        <h4>No. of commits:&nbsp;
+          <span id="sean-commit">0</span>
+        </h4>
+        <h4>No. of issues:
+          <span id="sean-issue">0</span>
+        </h4>
+        <h4>No. of unit tests:&nbsp;</h4>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+  <h2>Website Statistics</h2>
+  <div class="row">
+    <div class="container">
+      <h4><b>Total no. of commits:&nbsp;<span id="total_commits">0</span></b></h4>
+      <h4><b>Total no. of issues: <span id="total_issues">0</span></b></h4>
+      <h4><b>Total no. of unit tests:&nbsp;<span id="total_unit_tests"></span></b></h4>
+      <h4><b>GitLab Repo: </b><a href="https://gitlab.com/asikerd/parksareaweso.me" target="_blank">
+        https://gitlab.com/asikerd/parksareaweso.me</a></h4>
+        <h4><b>Restful API: </b><a href="https://documenter.getpostman.com/view/4706698/RWMCt9fN" target="_blank">
+       https://documenter.getpostman.com/view/4706698/RWMCt9fN</a></h4>
+      <h4><b>Tools used: </b>
+        <p style="margin-left: 40px">Postman - API tool to get data from our data sources and document our API.</p>
+        <p style="margin-left: 40px">Amazon Web Services - Used for hosting our website.</p>
+        <p style="margin-left: 40px">HTML/CSS - Used to develop the front end of the website.</p>
+        <p style="margin-left: 40px">Flask - Framework used to host our backend and front-end templates.</p>
+        <p style="margin-left: 40px">jQuery - used for querying calls to our database and API.</p>
+        <p style="margin-left: 40px">SQLAlchemy - used for creating our database and retrieving data from it.</p>
+        <p style="margin-left: 40px">Docker - used to containerize during development and deploy our front-end and backend servers.</p>
+        <p style="margin-left: 40px">React - used to render our front-end components in real time.</p>
+      </h4>
+      <h4><b>Data sources: </b>
+        <p style="margin-left: 40px"><a href="https://www.meetup.com/" target="_blank">Meetup.com</a> - Found events related to outdoors/saving the environment and the api gave us all the information for that particular event, which we used for our Volunteer ops section.</p>
+        <p style="margin-left: 40px"><a href="https://www.nps.gov/index.htm" target="_blank">NPS.gov</a> - Information gathered by finding the park code for a particular park we wanted information on and using an api call to get the name and description of the park.</p>
+        <p style="margin-left: 40px"><a href="https://www.wikipedia.org/" target="_blank">Wikipedia.org</a> - Found a particular article about wildlife and used the wikipedia api to obtain a description and image of a particular plant or animal.</p>
+        <p style="margin-left: 40px"><a href="https://www.yelp.com/" target="_blank">Yelp.com</a> - Found rating information for each park using Yelp Fusion API.</p></h4>
+      <h4><b>Technical Report can be found <a href="https://gitlab.com/asikerd/parksareaweso.me/blob/master/Techincal%20Report.pdf" target="_blank">here</a>.</b></h4>
+    </div>
+  </div>
+</div>
+
+<script src="{{url_for('static', filename = 'JS/aboutus.js')}}"></script>
+
+</body>
+{% endblock %}

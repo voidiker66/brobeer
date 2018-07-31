@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<body id="body">
+
+  
+<div class="container">
+
+<!-- Item is each individual park in data["data"-->
+{% for item in data %}
+<div class="col-sm-4">
+  <div class="card grid">
+    <a href="/parks/{{item[1]}}">
+      <img class="card-img-top" src="{{item[14]}}" alt="{{item["fullName"]}}">
+      <h3>{{item[2]}}, {{item[3][0]}}{{item[3][1]}}</h3>
+    </a>
+  </div>
+</div>
+{% endfor %}
+
+<script type="text/javascript">
+  var options = {
+    byRow: true,
+    property: 'height',
+    target: null,
+    remove: false
+};
+  $('.card').matchHeight(options);
+</script>
+  
+</div>
+
+</body>
+
+<nav aria-label="page-nav" id="page-nav">
+  <ul class="pagination">
+    <!-- Home page -->
+    {% if (page <= 1) %} 
+      <li class="page-item"><a class="page-link" href="#body">{{page}}</a></li>      
+      <li class="page-item"><a class="page-link" href="/parks/page/{{page + 1}}">{{page + 1}}</a></li>      
+      <li class="page-item"><a class="page-link" href="/parks/page/{{page + 2}}">{{page + 2}}</a></li>     
+      <li class="page-item"><a class="page-link" href="/parks/page/{{page + 1}}">Next</a></li>            
+      <li class="page-item"><a class="page-link" href="/parks/page/{{last_page}}">Last</a></li>            
+      
+    <!-- Last page -->
+    {% elif (page == last_page) %} 
+      <li class="page-item"><a class="page-link" href="/parks/page/1">First</a></li>                
+      <li class="page-item"><a class="page-link" href="{{page - 1}}">Previous</a></li>
+      <li class="page-item"><a class="page-link" href="{{page - 2}}">{{page - 2}}</a></li>      
+      <li class="page-item"><a class="page-link" href="{{page - 1}}">{{page - 1}}</a></li>      
+      <li class="page-item"><a class="page-link" href="#body">{{page}}</a></li>      
+
+    <!-- Pages in the middle -->
+    {% else %} 
+      <li class="page-item"><a class="page-link" href="/parks/page/1">First</a></li>                
+      <li class="page-item"><a class="page-link" href="{{page - 1}}">Previous</a></li>
+      <li class="page-item"><a class="page-link" href="{{page - 1}}">{{page - 1}}</a></li>      
+      <li class="page-item"><a class="page-link" href="#body">{{page}}</a></li>      
+      <li class="page-item"><a class="page-link" href="{{page + 1}}">{{page + 1}}</a></li>      
+      <li class="page-item"><a class="page-link" href="{{page + 1}}">Next</a></li>            
+      <li class="page-item"><a class="page-link" href="/parks/page/{{last_page}}">Last</a></li>            
+      
+    {% endif %}
+  </ul>
+</nav>
+{% endblock %}
